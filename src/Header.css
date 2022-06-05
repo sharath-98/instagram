@@ -2,11 +2,55 @@
   object-fit: contain;
   background-color: white;
   border-bottom: 1px solid lightgray;
-  padding: 20px;
   display: flex;
 }
 
 .header_logo > img{
-  width: 20%;
+  object-fit: contain;
+  min-width: 70px;
+  max-width: 150px;
 }
 
+.header_logo{
+  display: flex;
+  padding: 20px;
+  flex: 0.4;
+}
+
+
+.search{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 0.5;
+}
+
+.search > form{
+    display: flex;
+    flex: 1;
+    margin-right: 40px;
+}
+
+.search > form >input{
+    flex: 1;
+    padding: 20px;
+    border: none;
+    border-radius: 30px;
+    max-width: 300px;
+
+}
+
+.search > form > .MuiSvgIcon-root {
+  padding: 10px;
+} 
+
+.search > form > button {
+  display: none;
+}
+
+.header_icons{
+  display: flex;
+  justify-content: space-evenly;
+  margin-right: -1px;
+  flex: 0.2;
+}
