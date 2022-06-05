@@ -1,0 +1,12 @@
+.header{
+  object-fit: contain;
+  background-color: white;
+  border-bottom: 1px solid lightgray;
+  padding: 20px;
+  display: flex;
+}
+
+.header_logo > img{
+  width: 20%;
+}
+
