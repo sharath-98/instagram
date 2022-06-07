@@ -6,6 +6,7 @@ import { db } from './firebase';
 import firebase from 'firebase';
 import "./Post.css"
 import UserLike from './UserLike';
+import { useStateValue } from './StateProvider';
 
 function getModalStyle(){
   const top=50;
@@ -33,9 +34,11 @@ const useStyles = makeStyles((theme) => ({
   ));
 
 function Post({postId, username, postImage, caption}) {
-
+  const [{user}, dispatch] = useStateValue();
   const [show, setShow] = useState();
   const [input, setInput] = useState();
+
+  const [disabled, setDisabled] = useState(true);
   const [comments, setComments] = useState([]);
   const [likesCount, setLikesCount] = useState([]);
   const [likedUsers, setLikedUsers] = useState([]);
@@ -46,9 +49,20 @@ function Post({postId, username, postImage, caption}) {
   const classes = useStyles();
 
   useEffect(()=>{
+    if(input=="")
+      setDisabled(true);
+    else
+    {
+      setDisabled(false);
+    }
+  },[input]);
+
+  useEffect(()=>{
     let getComments;
     let getLikeCount;
     let getLikeUsers;
+    let getLike;
+
     if(postId){
       getComments = db.collection("posts").doc(postId)
       .collection("comments")
@@ -68,13 +82,27 @@ function Post({postId, username, postImage, caption}) {
         setLikedUsers(snapshot.docs.map((doc) => doc.data()));
       });
 
+      likedUsers.forEach((user) => {
+        if (user.username == username) {
+          setCheckLike(true);
+        }
+      })
+
     }
     return () => {
       getComments();
       getLikeCount();
       getLikeUsers();
     }
-  }, [postId])
+  }, [postId]);
+
+  useEffect(()=>{
+      likedUsers.forEach((user) => {
+        if (user.username == username) {
+          setCheckLike(true);
+        }
+      })
+    },[]);
 
   const sendMessage= (e) =>{
     e.preventDefault();
@@ -98,13 +126,7 @@ function Post({postId, username, postImage, caption}) {
         setSeed(Math.floor(Math.random()*50000));
     }, []);
 
-    useEffect(()=>{
-      likedUsers.forEach((user) => {
-        if (user.username == username) {
-          setCheckLike(true);
-        }
-      })
-    },[]);
+    
 
     const handleLike = () =>{
       if(checkLike == false)
@@ -115,9 +137,6 @@ function Post({postId, username, postImage, caption}) {
         .add({
           username:username
         })
-      }
-      else{
-        
       }
     };
   
@@ -186,7 +205,7 @@ function Post({postId, username, postImage, caption}) {
                 <EmojiEmotions onClick={()=>{setShow(!show)}}/>
                 <form onSubmit={sendMessage}>
                     <input value={input} onChange={(e) => setInput(e.target.value)} type="text" placeholder="Type a message"/>
-                    <button type="submit"> POST</button>
+                    <button type="submit" disabled={disabled}> POST</button>
                 </form>
                 
         </div>

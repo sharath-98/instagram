@@ -80,7 +80,7 @@ function Header() {
             >
               <div style={modalStyle} className={classes.paper}>
                 <div className='image_upload'>
-                  <ImageUpload username={user.email}/>
+                  <ImageUpload username={user? user.email:""}/>
                 </div>
               </div>
             </Modal>

@@ -1,5 +1,5 @@
 .post{
-    max-width: 550px;
+    max-width: 450px;
     background-color: white;
     border: 1px solid lightgray;
     margin-bottom: 50px;
@@ -78,6 +78,9 @@
 
 .chat_footer > form > button{
     border: none;
+    color: rgb(111, 111, 221);
+    font-weight: bold;
+    font-size: small;
     background-color: white;
 }
 

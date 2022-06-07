@@ -3,6 +3,7 @@
 
 export const initialState={
     user:null,
+    username:null
 };
 
 const reducer = (state, action) =>{

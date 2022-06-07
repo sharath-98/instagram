@@ -6,3 +6,34 @@
   background-color: #fafafa;
   height: 100vh;
 }
+
+.main{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  background-color: #fafafa;
+}
+
+.posts{
+  flex: 0.8;
+  background-color: #fafafa;
+}
+
+.right{
+  flex: 0.2;
+  margin-right: 10%;
+  position: sticky;
+  min-width: 30%;
+  overflow: hidden;
+  background-color: #fafafa;
+}
+
+.right > h4{
+  padding: 20px;
+  color: gray;
+}
+
+.right > img{
+  object-fit: contain;
+  width: 100%;
+}

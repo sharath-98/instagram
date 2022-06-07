@@ -17,7 +17,7 @@ function UserLike({username}) {
             <h4>{username}</h4>
         </div>
         <div className='userlike_right'>
-            <Button>Follow</Button>
+            <Button variant="contained" size='small'>Follow</Button>
         </div>
         
     </div>

@@ -5,21 +5,30 @@ import './App.css';
 import Header from './Header';
 import Post from './Post';
 import {auth, db} from "./firebase"
-import { Box, Button, makeStyles, Modal, Typography } from '@material-ui/core';
+import { Avatar, Box, Button, makeStyles, Modal, Typography } from '@material-ui/core';
 import { mergeClasses } from '@material-ui/styles';
 import Login from './Login';
 import { useStateValue } from './StateProvider';
 import { IGEmbed } from 'react-ig-embed';
+import UserLike from './UserLike';
 
 
 function Root(){
+    const [seed, setSeed]= useState();
+    const [allusers, setAllusers]= useState();
 
+    useEffect(()=>{
+        setSeed(Math.floor(Math.random()*50000));
+    }, []);
     const [posts, setPosts] = useState([]);
     const [{user}, dispatch]= useStateValue();
     const navigate = useNavigate();
 
     useEffect(() => {
-    
+      db.collection("users")
+        .onSnapshot((snapshot) => {
+          setAllusers(snapshot.docs.map((doc) => doc.data()));
+        });
      
       db.collection('posts').onSnapshot(snapshot => {
         setPosts(snapshot.docs.map(doc => (
@@ -69,12 +78,25 @@ function Root(){
             <Route path='/home' element={
               <Fragment>
                 <Header/>
-                <div className='posts'>{
+
+                <div className='main'>
+                  <div className='posts'>{
                   posts.map(({id, post}) => (
                     <Post key={id} postId={id} username={post.username.split('@')[0]} postImage={post.imageUrl} caption={post.caption}/>
                   ))
-                }
+                   }
+                   </div>
+                  <div className='right'>
+                    <h4>Suggested for you</h4>
+                    {
+                      allusers?.map((user)=>(
+                        <UserLike username={user.username}/>
+                      ))
+                    }
+                    <img src={require('./images/insta-copyright.png')}/>
+                  </div>
                 </div>
+                
               </Fragment>
             }>
             </Route>

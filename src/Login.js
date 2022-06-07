@@ -31,6 +31,9 @@ function Login() {
         //This place in the code denoted that a user is successfuly created in the firestore
         console.log(auth);
         if(auth){
+          db.collection("users").add({
+            user:email.split('@')[0]
+          })
           navigate('/home')
         }
       }) 

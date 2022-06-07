@@ -3,12 +3,14 @@ import React, { useState } from 'react'
 import {storage, db} from './firebase'
 import firebase from "firebase"
 import './ImageUpload.css'
+import { useStateValue } from './StateProvider'
 
 function ImageUpload({username}) {
     const [caption, setCaption]= useState('');
     const [url,setUrl] = useState("");
     const [image, setImage] = useState(null);
     const [progress, setProgress] = useState(0);
+    const [userDocid, setUserDocId] = useState();
 
     const handleChange = (e) => {
         if(e.target.files[0]){
@@ -46,6 +48,25 @@ function ImageUpload({username}) {
                         // Post image URL inside db
                         db.collection("posts").add({
                             // timestamp is used here to figure out the time the image was uploaded, which is gonna determine the order in which we display the posts (latest at the top)
+                            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                            caption: caption,
+                            imageUrl: url,
+                            username: username,
+                            imagename: image.name
+                        });
+
+                        db.collection("users").where("username", "==", username)
+                        .get()
+                        .then(function(querySnapshot) {
+                            querySnapshot.forEach(function(doc) {
+                                setUserDocId(doc.id); //here's your doc
+                            });
+                        })
+                        .catch(function(error) {
+                            console.log("Error getting documents: ", error);
+                        });
+
+                        db.collection("users").doc(userDocid).collection("myPosts").add({
                             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                             caption: caption,
                             imageUrl: url,
