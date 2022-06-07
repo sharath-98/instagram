@@ -38,8 +38,8 @@ function Header() {
           <IconButton><AddBox/></IconButton>
           <IconButton><Explore/></IconButton>
           <IconButton><FavoriteBorder/></IconButton>
-          <Link to={!user && '/'}>
-            <Button className='header_optionLineTwo' onClick={handleSignOut}>{ user ? 'Sign-Out':'Sign-In'}</Button>
+          <Link to={!user && '/'} className='header_optionLineTwo' >
+            <Button onClick={handleSignOut}>{ user ? 'Sign Out':'Sign In'}</Button>
           </Link>
         </div>
     </div>

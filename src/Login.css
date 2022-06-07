@@ -5,12 +5,21 @@
     margin-left: auto;
     margin-top: 30px;
     margin-bottom: 30px;
+    height: 40%;
 
 }
 
-.login_image{
+.login_image1{
     width: 70%;
     object-fit: contain;
+    position: relative;
+}
+.login_image2{
+    width: 70%;
+    top: 10%;
+    left: 30%;
+    object-fit: contain;
+    position: absolute;
 }
 
 
@@ -26,6 +35,7 @@
     margin-right: 30px;
     margin-left: auto;
     align-items: center;
+    position: relative;
 }
 
 .login_right{
@@ -43,22 +53,24 @@
     margin-top: 25px;
     color: white;
     margin-bottom: 5px;
-    background: lightblue;
+    background: rgb(193, 152, 231);
     font-weight: 700;
 }
 
 .signUp{
     height: auto;
     padding: 20px;
-    border: 2px solid rgb(211, 211, 211);
+    border: 2px solid lightgrey;
     width: auto;
     text-align: center;
     color: black;
     margin-left: auto;
 }
 
-.signUp > span{
-    color: blueviolet;
+.span{
+    color: rgb(193, 152, 231);
+    font-weight: 700;
+    cursor: pointer;
 }
 
 .container{
@@ -92,4 +104,22 @@
 .container > form > p{
     font-size: 13px;
     margin-top: 15px;
+}
+
+.app_store{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    object-fit: contain;
+    width: 300px;
+    margin-top: 20px;
+}
+
+.app_store > img{
+    width: 60%;
+}
+
+.get_app_title{
+    text-align: center;
+    margin-top: 10%;
 }

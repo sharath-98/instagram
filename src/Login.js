@@ -41,7 +41,8 @@ function Login() {
   return (
     <div className='login'>
       <div className='login_left'>
-        <img className='login_image' src="https://www.instagram.com/static/images/homepage/screenshots/screenshot3-2x.png/fe2540684ab2.png"/>
+        <img className='login_image1' src="https://www.instagram.com/static/images/homepage/screenshots/screenshot3-2x.png/fe2540684ab2.png"/>
+        <img className='login_image2' src="https://www.instagram.com/static/images/homepage/screenshots/screenshot4-2x.png/8e9224a71939.png"/>
       </div>
       <div className='login_right'>
         <div className='container'>
@@ -54,8 +55,15 @@ function Login() {
             <button className='signIn' onClick={signIn}>Continue</button>
           </form>
         </div>  
-        <div className='signUp' onClick={signUp}> 
-          <p>Don't have an account?<a> <span className='span'>Sign Up</span></a></p>
+        <div className='signUp'> 
+          <p>Don't have an account?<a onClick={signUp}><span className='span'> Sign up</span></a></p>
+        </div>
+        <div className='get_app_title'>
+          <p>Get the app.</p>
+        </div>
+        <div className='app_store'>
+          <img src='https://www.aps.edu/students-parents/images/downloadOnTheGooglePlayStoreBadge.png/download'/>
+          <img src='https://de.maplesoft.com/products/MapleCalculator/images/app-store-icons-apple-app-store.png'/>
         </div>
       </div>
       

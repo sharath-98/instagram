@@ -11,12 +11,12 @@
   object-fit: contain;
   min-width: 70px;
   min-height: 100px;
-  max-width: 100px;
+  max-width: 110px;
 }
 
 .header_logo{
   display: flex;
-  flex: 0.4;
+  flex: 0.3;
 }
 
 
@@ -54,9 +54,13 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  flex: 0.2;
+  flex: 0.3;
+  text-decoration: none;
 }
 
 .header_optionLineTwo{
   text-decoration: none; 
+  font-weight: 500;
+  margin: 4px;
+
 }
