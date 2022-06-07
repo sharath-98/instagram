@@ -71,11 +71,10 @@ function Root(){
                 <Header/>
                 <div className='posts'>{
                   posts.map(({id, post}) => (
-                    <Post key={id} username={post.username.split('@')[0]} postImage={post.imageUrl} caption={post.caption}/>
+                    <Post key={id} postId={id} username={post.username.split('@')[0]} postImage={post.imageUrl} caption={post.caption}/>
                   ))
                 }
                 </div>
-                <IGEmbed url="https://www.instagram.com/p/CUbHfhpswxt/" />
               </Fragment>
             }>
             </Route>

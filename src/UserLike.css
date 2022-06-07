@@ -1,0 +1,27 @@
+.userlike{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+.userlike_left{
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+.userlike_left > h4{
+    margin-left: 10px;
+}
+
+.userlike_right{
+    display: flex;
+    flex: 0;
+}
+
+.userlike_right > button{
+    background-color: rgb(173, 115, 227);
+    color: white;
+}

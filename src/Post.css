@@ -15,8 +15,19 @@
 
 .post_caption{
     font-weight: normal;
-    padding: 20px;
+    padding: 10px;
 }
+
+.post_comments{
+    font-weight: normal;
+    padding: 10px;
+}
+
+.post_likes{
+    font-weight: bolder;
+    padding: 10px;
+}
+
 .post_header{
     display: flex;
     align-items: center;
@@ -68,4 +79,15 @@
 .chat_footer > form > button{
     border: none;
     background-color: white;
+}
+
+.likeModal{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid lightgray;
+    text-align: center;
+}
+
+.title{
+    margin-bottom: 14px;
 }
