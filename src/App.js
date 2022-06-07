@@ -79,9 +79,7 @@ function Root(){
             </Route>
             <Route path='/home' element={
               <Fragment>
-                <div className='header'>
                   <Header/>
-                </div>
 
                 <div className='main'>
                   <div className='posts'>{
