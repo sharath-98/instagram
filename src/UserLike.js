@@ -2,7 +2,7 @@ import { Avatar, Button } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import "./UserLike.css"
 
-function UserLike({username}) {
+function UserLike({username, switchButton}) {
 
     const [seed, setSeed]= useState();
 
@@ -17,7 +17,7 @@ function UserLike({username}) {
             <h4>{username}</h4>
         </div>
         <div className='userlike_right'>
-            <Button variant="contained" size='small'>Follow</Button>
+            <Button variant="contained" size='small'>{switchButton?"Switch":"Follow"}</Button>
         </div>
         
     </div>

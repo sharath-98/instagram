@@ -1,6 +1,6 @@
 import { dblClick } from '@testing-library/user-event/dist/click';
 import { Fragment, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, Routes, useNavigate} from 'react-router-dom';
 import './App.css';
 import Header from './Header';
 import Post from './Post';
@@ -21,6 +21,7 @@ function Root(){
         setSeed(Math.floor(Math.random()*50000));
     }, []);
     const [posts, setPosts] = useState([]);
+    const [curentUser, setCurentUser] = useState([]);
     const [{user}, dispatch]= useStateValue();
     const navigate = useNavigate();
 
@@ -52,6 +53,7 @@ function Root(){
           type: 'SET_USER',
           user: authUser,
         })
+        setCurentUser(authUser)
       }
       else{
         //user logged out
@@ -77,7 +79,9 @@ function Root(){
             </Route>
             <Route path='/home' element={
               <Fragment>
-                <Header/>
+                <div className='header'>
+                  <Header/>
+                </div>
 
                 <div className='main'>
                   <div className='posts'>{
@@ -87,6 +91,7 @@ function Root(){
                    }
                    </div>
                   <div className='right'>
+                    <UserLike username={user?user.email.split('@')[0]:""} switchButton={true}/>
                     <h4>Suggested for you</h4>
                     {
                       allusers?.map((user)=>(
@@ -99,7 +104,7 @@ function Root(){
                 
               </Fragment>
             }>
-            </Route>
+              </Route>
           </Routes>
     </div>
   );
