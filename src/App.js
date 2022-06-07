@@ -5,15 +5,15 @@ import './App.css';
 import Header from './Header';
 import Post from './Post';
 import {auth, db} from "./firebase"
-import { Box, Button, Modal } from '@material-ui/core';
+import { Box, Button, makeStyles, Modal, Typography } from '@material-ui/core';
 import { mergeClasses } from '@material-ui/styles';
 import Login from './Login';
 import { useStateValue } from './StateProvider';
 
+
 function Root(){
 
     const [posts, setPosts] = useState([]);
-
     const [{user}, dispatch]= useStateValue();
     const navigate = useNavigate();
 
@@ -38,10 +38,9 @@ function Root(){
       console.log('the user is ', authUser);
 
       if(authUser){
-        // the user just/was logged in
         dispatch({
           type: 'SET_USER',
-          user:authUser
+          user: authUser,
         })
       }
       else{
@@ -65,14 +64,13 @@ function Root(){
                 <Login/>
               </Fragment>
             }>
-
             </Route>
             <Route path='/home' element={
               <Fragment>
                 <Header/>
                 {
                   posts.map(({id, post}) => (
-                    <Post key={id} username={post.username} postImage={post.imageURL} caption={post.caption}/>
+                    <Post key={id} username={post.username.split('@')[0]} postImage={post.imageUrl} caption={post.caption}/>
                   ))
                 }
               </Fragment>

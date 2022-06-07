@@ -2,7 +2,7 @@
 //  initial state of the data layer(React Context API/ REDUX)
 
 export const initialState={
-    user:null
+    user:null,
 };
 
 const reducer = (state, action) =>{
@@ -11,12 +11,13 @@ const reducer = (state, action) =>{
     switch(action.type){
         case 'SIGN_OUT':
             return {
-                ...state, basket:[], user:null
+                ...state, user:null, username: null
             }
         case 'SET_USER':
             return {
                 ...state,
-                user:action.user
+                user:action.user,
+                username: action.username
             }
         default:
             return state;

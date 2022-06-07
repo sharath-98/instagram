@@ -31,7 +31,6 @@ function Login() {
         //This place in the code denoted that a user is successfuly created in the firestore
         console.log(auth);
         if(auth){
-          //force redirect to a new page
           navigate('/home')
         }
       }) 
