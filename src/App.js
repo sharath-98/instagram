@@ -9,6 +9,7 @@ import { Box, Button, makeStyles, Modal, Typography } from '@material-ui/core';
 import { mergeClasses } from '@material-ui/styles';
 import Login from './Login';
 import { useStateValue } from './StateProvider';
+import { IGEmbed } from 'react-ig-embed';
 
 
 function Root(){
@@ -68,11 +69,13 @@ function Root(){
             <Route path='/home' element={
               <Fragment>
                 <Header/>
-                {
+                <div className='posts'>{
                   posts.map(({id, post}) => (
                     <Post key={id} username={post.username.split('@')[0]} postImage={post.imageUrl} caption={post.caption}/>
                   ))
                 }
+                </div>
+                <IGEmbed url="https://www.instagram.com/p/CUbHfhpswxt/" />
               </Fragment>
             }>
             </Route>
