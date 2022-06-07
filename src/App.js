@@ -1,13 +1,21 @@
 import { dblClick } from '@testing-library/user-event/dist/click';
 import { Fragment, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom';
 import './App.css';
 import Header from './Header';
 import Post from './Post';
-import {db} from "./firebase"
-function App() {
+import {auth, db} from "./firebase"
+import { Box, Button, Modal } from '@material-ui/core';
+import { mergeClasses } from '@material-ui/styles';
+import Login from './Login';
+import { useStateValue } from './StateProvider';
+
+function Root(){
 
     const [posts, setPosts] = useState([]);
+
+    const [{user}, dispatch]= useStateValue();
+    const navigate = useNavigate();
 
     useEffect(() => {
     
@@ -23,11 +31,43 @@ function App() {
 
     }, []);
 
+  // Keep track of which person is currently looged in. This is just a listener
+  useEffect(()=>{
+    //run once when app component loads
+    auth.onAuthStateChanged(authUser => {
+      console.log('the user is ', authUser);
+
+      if(authUser){
+        // the user just/was logged in
+        dispatch({
+          type: 'SET_USER',
+          user:authUser
+        })
+      }
+      else{
+        //user logged out
+        dispatch({
+          type:'SET_USER',
+          user:null
+        })
+
+        navigate('/');
+      }
+    })
+  }, []) //anything inside the square bracket on change will relaunch the useEffect
+
+  
   return (
-    <Router>
-    <div className="App">
+       <div className="App">
           <Routes>
             <Route path='/' element={
+              <Fragment>
+                <Login/>
+              </Fragment>
+            }>
+
+            </Route>
+            <Route path='/home' element={
               <Fragment>
                 <Header/>
                 {
@@ -40,6 +80,13 @@ function App() {
             </Route>
           </Routes>
     </div>
+  );
+}
+
+function App() {
+return (
+    <Router>
+      <Root/>
     </Router>
     
   );
